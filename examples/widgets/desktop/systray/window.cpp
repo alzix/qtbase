@@ -109,10 +109,11 @@ void Window::setVisible(bool visible)
 //! [1]
 
 //! [2]
-void Window::closeEvent(QCloseEvent *event)
-{
-    if (!event->spontaneous() || !isVisible())
+void Window::closeEvent(QCloseEvent *event) {
+    if (!event->spontaneous() || !isVisible()) {
+        qDebug() << "Window::closeEvent accepted";
         return;
+    }
     if (trayIcon->isVisible()) {
         QMessageBox::information(this, tr("Systray"),
                                  tr("The program will keep running in the "
@@ -275,7 +276,10 @@ void Window::createActions()
     connect(restoreAction, &QAction::triggered, this, &QWidget::showNormal);
 
     quitAction = new QAction(tr("&Quit"), this);
-    connect(quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
+    connect(quitAction, &QAction::triggered, []() {
+              qDebug() << "Quit action triggered";
+              qApp->quit();
+            });
 }
 
 void Window::createTrayIcon()
