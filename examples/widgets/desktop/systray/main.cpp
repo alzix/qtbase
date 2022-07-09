@@ -48,9 +48,10 @@
 **
 ****************************************************************************/
 
-#include <QApplication>
 #include "myapp.h"
 
+#include <QApplication>
+#include <QDebug>
 #ifndef QT_NO_SYSTEMTRAYICON
 
 #include <QMessageBox>
@@ -72,7 +73,9 @@ int main(int argc, char *argv[])
 
     Window window;
     window.show();
-    return app.exec();
+    auto ret_val = app.exec();
+    qDebug() << "Application exit with retval" << ret_val;
+    return ret_val;
 }
 
 #else
