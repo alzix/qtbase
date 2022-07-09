@@ -14,6 +14,7 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 qt_add_executable(systray
     main.cpp
     window.cpp window.h
+    myapp.cpp myapp.h
 )
 
 set_target_properties(systray PROPERTIES
