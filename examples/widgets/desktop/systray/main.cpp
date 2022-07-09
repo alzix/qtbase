@@ -49,6 +49,7 @@
 ****************************************************************************/
 
 #include <QApplication>
+#include "myapp.h"
 
 #ifndef QT_NO_SYSTEMTRAYICON
 
@@ -59,7 +60,7 @@ int main(int argc, char *argv[])
 {
     Q_INIT_RESOURCE(systray);
 
-    QApplication app(argc, argv);
+    MyApp app(argc, argv);
 
     if (!QSystemTrayIcon::isSystemTrayAvailable()) {
         QMessageBox::critical(nullptr, QObject::tr("Systray"),
